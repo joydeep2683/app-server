@@ -13,6 +13,7 @@ from app.routers import area, degree, student, educator, call_request
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup: Create database tables
+    # Note: Using synchronous create_all is acceptable here as it only runs once at startup
     Base.metadata.create_all(bind=engine)
     yield
     # Shutdown: cleanup if needed
@@ -43,4 +44,11 @@ app.include_router(call_request.router, prefix="/api/v1/calls", tags=["calls"])
 
 @app.get("/")
 async def root():
+    """Root endpoint"""
     return {"message": "Welcome to App Server API"}
+
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint"""
+    return {"status": "healthy", "version": "1.0.0"}

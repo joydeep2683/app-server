@@ -32,7 +32,15 @@ PG_DB_HOST=localhost
 PG_DB_PORT=5432
 ```
 
-### 4. Run the application
+### 4. Initialize the database (optional)
+If you prefer to create database tables manually before starting the server:
+```bash
+python init_db.py
+```
+
+Note: Tables will also be automatically created when the FastAPI server starts.
+
+### 5. Run the application
 ```bash
 uvicorn main:app --reload
 ```
