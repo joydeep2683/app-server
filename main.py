@@ -7,7 +7,7 @@ from contextlib import asynccontextmanager
 
 from app.database import engine
 from app.models import Base
-from app.routers import area, degree, student, educator, call_request
+from app.routers import area, degree, educator_area, student, educator, call_request
 
 
 @asynccontextmanager
@@ -41,6 +41,7 @@ app.include_router(degree.router, prefix="/api/v1/degree", tags=["degree"])
 app.include_router(student.router, prefix="/api/v1/students", tags=["students"])
 app.include_router(educator.router, prefix="/api/v1/educators", tags=["educators"])
 app.include_router(call_request.router, prefix="/api/v1/calls", tags=["calls"])
+app.include_router(educator_area.router, prefix="/api/v1/educator_areas", tags=["educator_areas"])
 
 @app.get("/")
 async def root():

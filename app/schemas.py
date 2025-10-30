@@ -105,7 +105,7 @@ class EducatorAreaBase(BaseModel):
 
 
 class EducatorAreaCreate(EducatorAreaBase):
-    pass
+    educator_id: int
 
 
 class EducatorArea(EducatorAreaBase):

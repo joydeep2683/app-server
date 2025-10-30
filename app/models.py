@@ -6,6 +6,14 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.database import Base
 
+class Institute(Base):
+    __tablename__ = "institute"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(200), unique=True, nullable=False)
+
+    # Relationship
+    educators = relationship("EducatorDegree", back_populates="institute")
 
 class Area(Base):
     __tablename__ = "area"
