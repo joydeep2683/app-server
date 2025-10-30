@@ -13,7 +13,7 @@ class Institute(Base):
     name = Column(String(200), unique=True, nullable=False)
 
     # Relationship
-    educators = relationship("EducatorDegree", back_populates="institute")
+    educator_institute = relationship("EducatorDegree", back_populates="institute")
 
 class Area(Base):
     __tablename__ = "area"
@@ -88,10 +88,12 @@ class EducatorDegree(Base):
     id = Column(Integer, primary_key=True, index=True)
     educator_id = Column(Integer, ForeignKey("educator.id"), nullable=False)
     degree_id = Column(Integer, ForeignKey("degree.id"), nullable=False)
+    institute_id = Column(Integer, ForeignKey("institute.id"), nullable=True)
 
     # Relationships
     educator = relationship("Educator", back_populates="degrees")
     degree = relationship("Degree", back_populates="educator_degrees")
+    institute = relationship("Institute", back_populates="educator_institute")
 
 
 class EducatorArea(Base):
